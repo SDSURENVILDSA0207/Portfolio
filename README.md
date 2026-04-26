@@ -1,152 +1,117 @@
-# Renvil Dsa — Portfolio (Web Designer & Frontend)
+# My portfolio website
 
-A single-page portfolio website that presents education, experience, projects, and skills. It is built with **HTML, CSS, vanilla JavaScript, and jQuery** so it directly reflects common **web designer / frontend** job expectations: semantic markup, responsive layout, cross-browser–friendly CSS, and lightweight scripting—without requiring a build step or framework to view or host.
-
----
-
-## Table of contents
-
-1. [Purpose](#purpose)
-2. [Tech stack](#tech-stack)
-3. [What’s in the project](#whats-in-the-project)
-4. [Features in detail](#features-in-detail)
-5. [How to run locally](#how-to-run-locally)
-6. [Why the browser may say “Not Secure”](#why-the-browser-may-say-not-secure)
-7. [Deploying (HTTPS)](#deploying-https)
-8. [Customizing the site](#customizing-the-site)
-9. [Browser support](#browser-support)
+Hi, I’m **Renvil Dsa**. I built this site as my personal portfolio: one place to show who I am as a **web designer and frontend developer**, what I’ve worked on, and how I think about layout, code, and collaboration. It is a **static, hand-authored** project—no framework and no build step—so anyone reviewing my work can open the files and see exactly how I structure HTML, style with CSS, and add behavior with JavaScript and jQuery.
 
 ---
 
-## Tech stack
+## Why I made it this way
 
-| Layer        | What’s used | Why |
-|-------------|-------------|-----|
-| **Markup**  | HTML5       | Semantic regions (`header`, `main`, `section`, `nav`, `footer`), skip link, ARIA on the mobile menu. |
-| **Styling** | CSS3        | Custom properties (variables), Flexbox and Grid, `clamp()` for fluid spacing/type, sticky header, `prefers-reduced-motion` for accessibility. |
-| **Scripts** | JavaScript + **jQuery 3.7** (CDN) | Mobile navigation, smooth in-page scrolling, footer year, scroll class on the header. Matches roles that list jQuery explicitly. |
-| **Assets**  | `favicon.svg` | “RD” mark in the tab; scales cleanly (SVG). |
-| **Fonts**   | Google Fonts (DM Sans, Fraunces) | Loaded in `index.html` with `preconnect` for performance. |
+I wanted a portfolio that **mirrors the skills employers ask for** in web and digital design roles: solid **HTML and CSS**, **JavaScript** with **jQuery** where it fits real-world sites, **responsive** and **mobile-first** thinking, and attention to **cross-browser** behavior. I also weave in my experience with **Figma**, **Adobe** tools, and **CMS/campaign**-style work through the copy and skills sections.
 
-No compile step, no `node_modules`—open the folder in any editor and serve the files (see below).
+Sticking to vanilla HTML/CSS/JS (plus jQuery) keeps the project **light, fast, and easy to host**—perfect for **GitHub Pages**, Netlify, or any static host with **HTTPS** out of the box.
 
 ---
 
-## What’s in the project
+## What I built
+
+A **single-page** site with clear sections:
+
+| Section | What you’ll find |
+|--------|-------------------|
+| **Hero** | My positioning line, short intro, calls to action, and a quick “focus areas” card |
+| **About** | How my workflow maps to common web designer expectations (HTML/CSS, jQuery, responsive, Figma/Adobe) |
+| **Skills** | Grouped tags from core web through design tools and my broader stack (e.g. React, Git) |
+| **Experience** | My roles at **San Diego State University** and **Pantech Solutions** |
+| **Projects** | **LuxeFlow Commerce Studio** and **IMEITrack**—summaries and tech tags |
+| **Education** | **MS CS (SDSU)** and **BS CS (University of Mumbai)** |
+| **Contact** | Email, phone, **LinkedIn**, and **GitHub** |
+
+I added a custom **“RD” favicon** (`favicon.svg`) so the tab matches my personal brand, and I tuned the **hero** so the first screen feels intentional on common laptop sizes (no stray peek of the next section).
+
+---
+
+## How I built it (tech stack)
+
+- **HTML5** — Semantic structure (`header`, `main`, `section`, `nav`, `footer`), a skip link for keyboard users, and ARIA on the mobile menu.
+- **CSS3** — Custom properties, Flexbox and Grid, fluid spacing with `clamp()`, sticky header, dark theme, and `prefers-reduced-motion` where it matters.
+- **JavaScript + jQuery 3.7** — Mobile nav toggle, smooth in-page scrolling (with the correct offset for the sticky header), dynamic copyright year, and a light scroll state on the header.
+- **Google Fonts** — **DM Sans** and **Fraunces**, with `preconnect` for snappier font loading.
+- **jQuery from CDN** with **SRI** (`integrity` + `crossorigin`) for security best practice on third-party script.
+
+I deliberately **did not** use React or a bundler for *this* site, so the repo stays transparent and the stack matches “HTML, CSS, JavaScript, jQuery” job descriptions.
+
+---
+
+## Project structure
 
 ```
 Portfolio/
-├── index.html      # All page content and structure
-├── favicon.svg     # Tab icon (“RD”)
+├── index.html      # All content and markup
+├── favicon.svg     # RD logo for the browser tab
 ├── css/
-│   └── styles.css  # Global styles, layout, components
+│   └── styles.css  # Layout, theme, components
 ├── js/
-│   └── main.js     # jQuery: nav, scroll, year, header state
-└── README.md       # This file
+│   └── main.js     # jQuery: navigation, scroll, year
+└── README.md       # You’re reading it
 ```
 
 ---
 
-## Features in detail
+## Run it on your machine
 
-### Content sections
+I develop by **serving the folder** (not by opening the file directly), so assets and behavior stay consistent.
 
-1. **Hero** — Headline, short positioning paragraph, primary/secondary calls to action, quick facts, and a “Focus areas” card.
-2. **About (“How I align with the role”)** — Short bridge between the job’s typical expectations and how you work (maps to HTML/CSS, jQuery, responsive & cross-browser, Figma/Adobe).
-3. **Skills** — Grouped tags: core web, design/collab, and broader production tools (e.g. React, Git), aligned with the resume.
-4. **Experience** — Timeline for SDSU and Pantech, using resume bullets.
-5. **Projects** — LuxeFlow and IMEITrack summaries with technology tags.
-6. **Education** — SDSU and University of Mumbai.
-7. **Contact** — Email, phone, LinkedIn, GitHub (update these in `index.html` if they change).
-8. **Footer** — Copyright year (filled by JavaScript) and “Back to top”.
-
-### Responsive behavior
-
-- **Navigation:** Desktop shows a horizontal nav; narrow viewports use a **hamburger** button that opens a full-width panel, **Escape** closes it, and resizing to desktop width resets the menu.
-- **Layout:** The hero uses a two-column grid on wide screens and stacks on smaller screens. Other sections use grids that collapse to a single column where needed.
-- **Hero height:** The hero section uses a **minimum height** based on the visible viewport (`svh`) minus the header so the next section’s heading does not “peek” at the bottom of the first screen on common laptop window sizes.
-
-### Smooth scrolling
-
-- In-page links (`#about`, `#skills`, etc.) scroll smoothly and offset by the sticky header height so section titles are not hidden under the bar.
-- Links to `#top` scroll to **y = 0** (true top), including the logo and “Back to top”.
-
-### Styling and theme
-
-- Dark theme with accent green (`#3ecf9a` and related tokens) in `:root` at the top of `styles.css`. Adjust those variables to rebrand quickly.
-
-### Performance / quality notes
-
-- `preconnect` to `fonts.googleapis.com` and `fonts.gstatic.com` reduces font load delay.
-- jQuery is loaded with **SRI** (`integrity` + `crossorigin`) from the official CDN for tamper checking.
-
----
-
-## How to run locally
-
-You need a static file server (double-clicking `index.html` may work but can break some paths and behave differently; serving the folder is recommended).
-
-### Option A — Python 3 (often pre-installed on macOS)
+**Python 3** (macOS often has this already):
 
 ```bash
-cd /path/to/Portfolio
+cd path/to/Portfolio
 python3 -m http.server 8080
 ```
 
-Open **http://127.0.0.1:8080** (or **http://[::1]:8080** on IPv6).
+Then open **http://127.0.0.1:8080** in your browser. Stop the server with **Ctrl+C**. Pick another port if `8080` is taken.
 
-Stop the server: **Ctrl+C** in the terminal.
+You can also use **VS Code Live Server**, `npx serve`, or any static file server—point it at this project’s root so `index.html` loads as the home page.
 
-Use another port if `8080` is busy, e.g. `python3 -m http.server 3000`.
+### Note on “Not Secure” in the address bar
 
-### Option B — Other tools
-
-If you use **Node.js**, you can use `npx serve` or **VS Code “Live Server”**—point the server root at this folder so `index.html` is the default document.
+Local servers use **HTTP**, not **HTTPS**, so the browser may say **“Not Secure.”** That is **normal for localhost**. When I **deploy** the same files to GitHub Pages, Netlify, or Vercel, the site is served over **HTTPS** and that warning goes away for visitors.
 
 ---
 
-## Why the browser may say “Not Secure”
+## Deploy (share a proper link)
 
-When you use `python3 -m http.server` (or most local dev servers), the URL uses **HTTP**, not **HTTPS**. Browsers label HTTP pages as “Not Secure.” That is **expected for local development**; it does not mean your HTML is invalid.
+1. Push this repository to **GitHub**.
+2. Turn on **GitHub Pages** (root of `main` is fine), or connect the repo to **Netlify** / **Vercel** with the **publish directory** set to the project root.
+3. Use the **https://** URL on my resume, LinkedIn, and in interviews.
 
-To get a **lock icon** and HTTPS for sharing with employers, **deploy** the same files to a host that provides TLS (e.g. GitHub Pages, Netlify, Vercel, Cloudflare Pages). Those services serve your site over HTTPS by default.
-
----
-
-## Deploying (HTTPS)
-
-Typical flow:
-
-1. Push this folder to a GitHub repository.
-2. Enable **GitHub Pages** in the repo settings (usually “Deploy from branch `main` / root” or `docs/`), **or** connect the repo to **Netlify** / **Vercel** and set publish directory to the project root.
-3. After deploy, use the `https://...` URL on your resume and LinkedIn.
-
-No build is required; static files are enough.
+There is still **no build**—it is all static files.
 
 ---
 
-## Customizing the site
+## If you fork or adapt this
 
-| Goal | Where to edit |
-|------|----------------|
-| **Copy, headings, contact links, project text** | `index.html` |
-| **Colors, spacing, fonts, breakpoints** | `css/styles.css` (especially `:root` variables) |
-| **Menu behavior, scroll offset, year** | `js/main.js` |
-| **Tab icon** | Replace `favicon.svg` or change `favicon.svg` and keep the `<link rel="icon" ...>` in `index.html` |
-| **Sticky header height** | CSS variable `--header-h` in `styles.css` should stay in sync with the real header (used for `min-height` on `.hero` and scroll math in JS) |
+| To change… | Edit… |
+|------------|--------|
+| Text, links, project blurbs | `index.html` |
+| Colors, spacing, layout | `css/styles.css` (start with the `:root` variables) |
+| Nav, scroll, footer year | `js/main.js` |
+| Tab icon | `favicon.svg` and the `<link rel="icon">` in `index.html` |
+| Sticky header height | CSS variable `--header-h` in `styles.css` (I use it for hero height and scroll math) |
 
-After edits, refresh the browser; if styles/cache stick, use a hard refresh (e.g. **Cmd+Shift+R** on Mac).
+For public forks: swap in your own name, experience, and contact details.
 
 ---
 
-## Browser support
+## Browsers
 
-- **Modern evergreen browsers** (current Chrome, Firefox, Safari, Edge) are the target.  
-- **SVG favicons** are widely supported; very old browsers may fall back to no icon.  
-- **`100svh`** and **`dvh`/`svh` units** are for stable viewport sizing; if you need to support very old environments, you could add a `100vh` fallback in CSS (optional).
+I target **current** Chrome, Firefox, Safari, and Edge. The **SVG favicon** and **`svh`-based** hero height work in modern browsers; very old clients might ignore the favicon or need fallbacks for viewport units (optional).
 
 ---
 
 ## License
 
-Personal portfolio content and code: use and modify for your own career materials as you see fit. If you fork publicly, consider replacing contact details and project descriptions with your own.
+This is **my personal portfolio**—content and design reflect my work and education. You may use the structure or ideas for your own site; if you republish, replace my story, projects, and contact information with yours.
+
+---
+
+**Thanks for reading.** If you’re a recruiter or hiring manager: this site is a concrete example of how I build for the web—**structured markup, thoughtful CSS, and practical JavaScript**—and I’m happy to walk through the code in an interview.
