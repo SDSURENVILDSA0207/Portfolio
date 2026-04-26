@@ -18,13 +18,6 @@ A single-page portfolio website that presents education, experience, projects, a
 
 ---
 
-## Purpose
-
-- **For interviews:** You can show a live or deployed link and say the site itself demonstrates the same fundamentals listed in many web designer postings (HTML/CSS, JavaScript, jQuery, responsive and mobile-first thinking, design-tool alignment).
-- **For reviewers:** The repo is small and readable—`index.html` is the content map, `css/styles.css` holds layout and theming, `js/main.js` handles behavior.
-
----
-
 ## Tech stack
 
 | Layer        | What’s used | Why |
